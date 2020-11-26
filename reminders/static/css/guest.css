@@ -1,0 +1,121 @@
+html {
+	z-index: 1;
+	min-height: 925px;
+	background-image: none;
+	border-width: 0px;
+	border-color: #000000;
+	background-color: #F5F5FA;
+	padding-bottom: 25px;
+	width: 100%;
+	max-width: 1920px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#header {
+	z-index: 2;
+	min-height: 42px;
+	background-color: #323232;
+}
+
+#header a {
+	z-index: 3;
+	min-height: 42px;
+	background-color: transparent;
+	font-size: 25px;
+	line-height: 41px;
+	color: #FFFFFF;
+	text-indent: 24px;
+	position: relative;
+	width: auto;
+	text-decoration: none;
+}
+#header a:last-child{
+	font-size: 20px;
+	left: 84%;
+}
+
+#welcome__heading {
+	z-index: 7;
+	min-height: 48px;
+	background-color: transparent;
+	font-size: 32px;
+	text-align: center;
+	line-height: 48px;
+	margin-top: 128px;
+	position: relative;
+	width: 23.49%;
+	margin-left: 38.23%;
+}
+
+#welcome__text {
+	z-index: 19;
+	min-height: 180px;
+	background-color: transparent;
+	margin-top: 89px;
+	position: relative;
+	width: 44.38%;
+	margin-left: 27.82%;
+}
+
+#welcome__text p{
+	font-size: 24px;
+	text-align: center;
+	line-height: 29px;
+}
+
+#welcome__button {
+	z-index: 11;
+	margin-top: 68px;
+	width: 100%;
+}
+
+#button_login {
+	z-index: 11;
+	min-height: 38px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #949498;
+	background-color: transparent;
+	border-radius: 10px;
+	font-size: 23px;
+	text-align: center;
+	line-height: 38px;
+	margin-bottom: -1px;
+	position: relative;
+	margin-right: -10000px;
+	margin-top: -1px;
+	width: 11.72%;
+	left: 32.35%;
+}
+
+#button_signin {
+	z-index: 15;
+	min-height: 38px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #949498;
+	background-color: transparent;
+	border-radius: 10px;
+	font-size: 23px;
+	text-align: center;
+	line-height: 38px;
+	margin-bottom: -1px;
+	position: relative;
+	margin-right: -10000px;
+	margin-top: -1px;
+	width: 11.72%;
+	left: 55.84%;
+}
+
+#footer {
+	z-index: 27;
+	min-height: 40px;
+	background-color: transparent;
+	font-size: 20px;
+	line-height: 40px;
+	margin-top: 281px;
+	position: relative;
+	width: 10.27%;
+	margin-left: 44.85%;
+}
