@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block content %}
+
+  <div class="clearfix borderbox" id="page"><!-- column -->
+   <div class="position_content" id="page_position_content">
+
+    </div>
+    <div class="clearfix colelem" id="pu339"><!-- group -->
+     <div class="clearfix grpelem" id="u339"><!-- column -->
+      <div class="rounded-corners clearfix colelem" id="u279"><!-- group -->
+       <div class="clip_frame grpelem" id="u575"><!-- image -->
+        <img class="block" id="u575_img" src="{% static 'images/list.png' %}" alt="Значок"/>
+       </div>
+       <div class="clearfix grpelem" id="u282-4"><!-- content -->
+        <p>Напоминания</p>
+       </div>
+      </div>
+      <a class="nonblock nontext rounded-corners clearfix colelem" id="u663-4" href="{% url 'main' %}">На главную</a>
+     </div>
+     <div class="clearfix grpelem" id="pu330-4"><!-- column -->
+      <div class="clearfix colelem" id="u330-4"><!-- content -->
+       <p>Напоминания</p>
+      </div>
+      <div class="clearfix colelem" id="pu450"><!-- group -->
+       <div class="clip_frame grpelem" id="u450"><!-- image -->
+        <img class="block" id="u450_img" src="{% static 'images/plus.png' %}" alt="Добавить событие"/>
+       </div>
+       <div class="clearfix grpelem" id="u333-4"><!-- content -->
+        <p>Новое напоминание</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+{% endblock %}

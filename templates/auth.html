@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block content %}
+  <div class="clearfix borderbox" id="page"><!-- column -->
+
+   <a class="nonblock nontext rounded-corners clearfix colelem" id="u666-4" href="{% url 'registration' %}">Регистрация</a>
+   <div class="clearfix colelem" id="u225-4"><!-- content -->
+    <p>Войти в iReminder</p>
+   </div>
+   <div class="rounded-corners clearfix colelem" id="u228"><!-- column -->
+    <div class="position_content" id="u228_position_content">
+     <div class="clearfix colelem" id="u234-4"><!-- content -->
+      <p>Логин...</p>
+     </div>
+     <div class="colelem" id="u231"><!-- simple frame --></div>
+     <div class="clearfix colelem" id="pu237-4"><!-- group -->
+      <div class="clearfix grpelem" id="u237-4"><!-- content -->
+       <p>Пароль...</p>
+      </div>
+      <a class="nonblock nontext clip_frame grpelem" id="u512" href="{% url 'main' %}"><img class="svg" id="u508" src="{% static 'images/enter.svg' %}" alt="Войти"/></a>
+     </div>
+    </div>
+   </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+ <meta charset="UTF-8">
+ <title>{{ title }}</title>
+ <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+ <link href="{% static 'css/site_global.css' %}" rel="stylesheet" type="text/css"/>
+ <link href="{% static 'css/guest.css' %}" rel="stylesheet" type="text/css"/>
+ <link href="{% static 'css/auth.css' %}" rel="stylesheet" type="text/css"/>
+ <link href="{% static 'css/registration.css' %}" rel="stylesheet" type="text/css"/>
+ <link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css"/>
+ <link href="{% static 'css/reminders.css' %}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+    <div id="header">
+        <a class="clearfix grpelem" href="/">iReminder</a>
+        <a class="clearfix grpelem">Пользователь</a>
+    </div>
+
+   {% block content %}
+
+   {% endblock %}
+
+</body>
+</html>

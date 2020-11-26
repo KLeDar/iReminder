@@ -1,0 +1,111 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block content %}
+
+   <div class="clearfix colelem" id="pu103"><!-- group -->
+    <div class="rounded-corners clearfix grpelem" id="u103"><!-- group -->
+     <div class="clip_frame grpelem" id="u106"><!-- image -->
+      <img class="block" id="u106_img" src="{% static 'images/loupe.png' %}" alt="Значок лупы"/>
+     </div>
+     <div class="clearfix grpelem" id="u116-4"><!-- content -->
+      <p>Поиск...</p>
+     </div>
+    </div>
+    <a class="nonblock nontext rounded-corners clearfix grpelem" id="u660-4" href="{% url 'guest' %}"><!-- content --><p>Выйти</p></a>
+   </div>
+
+
+   <div class="clearfix colelem" id="pu119"><!-- group -->
+    <div class="rounded-corners clearfix grpelem" id="u119"><!-- column -->
+     <div class="clearfix colelem" id="pu125"><!-- group -->
+      <div class="clip_frame grpelem" id="u125"><!-- image -->
+       <img class="block" id="u125_img" src="{% static 'images/box.png' %}" alt="Значок"/>
+      </div>
+      <div class="clearfix grpelem" id="u122-4"><!-- content -->
+       <p>13</p>
+      </div>
+     </div>
+     <div class="clearfix colelem" id="u135-4"><!-- content -->
+      <p>Все</p>
+     </div>
+    </div>
+    <div class="rounded-corners clearfix grpelem" id="u138"><!-- column -->
+     <div class="position_content" id="u138_position_content">
+      <div class="clearfix colelem" id="pu165"><!-- group -->
+       <div class="clip_frame grpelem" id="u165"><!-- image -->
+        <img class="block" id="u165_img" src="{% static 'images/calendar.png' %}" alt="Значок"/>
+       </div>
+       <div class="clearfix grpelem" id="u147-5"><!-- content -->
+        <p id="u147-3"><span id="u147">&nbsp;</span><span id="u147-2">3</span></p>
+       </div>
+      </div>
+      <div class="clearfix colelem" id="u156-4"><!-- content -->
+       <p>Ближайшие</p>
+      </div>
+     </div>
+    </div>
+    <div class="rounded-corners clearfix grpelem" id="u141"><!-- column -->
+     <div class="clearfix colelem" id="pu175"><!-- group -->
+      <div class="clip_frame grpelem" id="u175"><!-- image -->
+       <img class="block" id="u175_img" src="{% static 'images/time.png' %}" alt="Значок"/>
+      </div>
+      <div class="clearfix grpelem" id="u150-5"><!-- content -->
+       <p id="u150-3"><span id="u150">&nbsp;</span><span id="u150-2">5</span></p>
+      </div>
+     </div>
+     <div class="clearfix colelem" id="u159-4"><!-- content -->
+      <p id="u159-2">Просроченные</p>
+     </div>
+    </div>
+    <div class="rounded-corners clearfix grpelem" id="u144"><!-- column -->
+     <div class="clearfix colelem" id="pu185"><!-- group -->
+      <div class="clip_frame grpelem" id="u185"><!-- image -->
+       <img class="block" id="u185_img" src="{% static 'images/check.png' %}" alt="Значок"/>
+      </div>
+      <div class="clearfix grpelem" id="u153-5"><!-- content -->
+       <p id="u153-3"><span id="u153">&nbsp;</span><span id="u153-2">2</span></p>
+      </div>
+     </div>
+     <div class="clearfix colelem" id="u162-4"><!-- content -->
+      <p>Завершённые</p>
+     </div>
+    </div>
+   </div>
+
+
+   <div id="categories_list" class="clearfix colelem">
+       <div id="categories_list__header">
+           <p class="clearfix grpelem">Мои списки</p>
+           <p class="clearfix grpelem">Править</p>
+       </div>
+
+        <div id="categories_list__content" class="rounded-corners clearfix grpelem">
+            <ul class="categories">
+                {% for cat in categories %}
+                <li class="category">
+                    <div class="category_icon clip_frame grpelem">
+                     <img src="{% static 'images/list.png' %}" alt="Значок"/>
+                    </div>
+                    <div class="category__content clearfix grpelem" >
+                        <div class="pu566-4 clearfix colelem">
+                            <div class="category_name clearfix grpelem">
+                                <p>{{ cat.name }}</p>
+                            </div>
+                            <div class="category_count clearfix grpelem">
+                                <p>{{ cat.id }}</p>
+                            </div>
+
+                            <a class="category_arrow nonblock nontext clip_frame grpelem" href="{% url 'reminders' %}"><img src="{% static 'images/arrow.png' %}" alt="Перейти к событиям"/></a>
+                        </div>
+                        <div class="line_list colelem"></div>
+                    </div>
+                </li>
+                {% endfor %}
+
+
+            </ul>
+        </div>
+   </div>
+{% endblock %}
