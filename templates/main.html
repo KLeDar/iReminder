@@ -97,14 +97,12 @@
                                 <p>{{ cat.id }}</p>
                             </div>
 
-                            <a class="category_arrow nonblock nontext clip_frame grpelem" href="{% url 'reminders' %}"><img src="{% static 'images/arrow.png' %}" alt="Перейти к событиям"/></a>
+                            <a class="category_arrow nonblock nontext clip_frame grpelem" href="{% url 'reminders' cat.id %}"><img src="{% static 'images/arrow.png' %}" alt="Перейти к событиям"/></a>
                         </div>
                         <div class="line_list colelem"></div>
                     </div>
                 </li>
                 {% endfor %}
-
-
             </ul>
         </div>
    </div>

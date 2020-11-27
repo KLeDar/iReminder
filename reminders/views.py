@@ -1,10 +1,11 @@
 from itertools import count
 
-from django.http import HttpResponseNotFound, HttpResponse
+from django.http import HttpResponseNotFound, HttpResponse, Http404
 from django.shortcuts import render
 from django.views import View
 
 # Create your views here.
+from reminders import functions
 from reminders.models import User, Reminder_Category, Reminder
 
 
@@ -39,10 +40,18 @@ class MainView(View):
 
 
 class RemindersView(View):
-    def get(self, request):
+    def get(self, request, category_id):
+        if not Reminder_Category.objects.filter(id=category_id):
+            raise Http404
         context = {'title': 'Reminders',
+                   'categories': Reminder_Category.objects.all(),
+                   'reminders': Reminder.objects.filter(category_id=Reminder_Category.objects.get(id=category_id)),
                    }
         return render(request, 'reminders.html', context=context)
+
+    def post(self, request, category_id):
+        functions.create_reminder(name=request.POST.get('name'), category_id=request.POST.get('category_id'))
+        return render(request, 'reminders.html')
 
 
 def custom_handler404(request, exception):

@@ -24,8 +24,8 @@ urlpatterns = [
     path('', GuestView.as_view(), name='guest'),
     path('auth/', AuthView.as_view(), name='auth'),
     path('registration/', RegistrationView.as_view(), name='registration'),
-    path('main/', MainView.as_view(), name='main'),
-    path('reminders/', RemindersView.as_view(), name='reminders'),
+    path('user/', MainView.as_view(), name='main'),
+    path('user/<int:category_id>/', RemindersView.as_view(), name='reminders'),
 
 ]
 

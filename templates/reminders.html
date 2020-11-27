@@ -5,19 +5,24 @@
 {% block content %}
 
   <div class="clearfix borderbox" id="page"><!-- column -->
-   <div class="position_content" id="page_position_content">
 
-    </div>
     <div class="clearfix colelem" id="pu339"><!-- group -->
      <div class="clearfix grpelem" id="u339"><!-- column -->
-      <div class="rounded-corners clearfix colelem" id="u279"><!-- group -->
-       <div class="clip_frame grpelem" id="u575"><!-- image -->
-        <img class="block" id="u575_img" src="{% static 'images/list.png' %}" alt="Значок"/>
-       </div>
-       <div class="clearfix grpelem" id="u282-4"><!-- content -->
-        <p>Напоминания</p>
-       </div>
-      </div>
+        <ul>
+            {% for cat in categories %}
+            <li>
+                <div class="rounded-corners clearfix colelem" id="u279"><!-- group -->
+                    <div class="clip_frame grpelem" id="u575"><!-- image -->
+                        <img class="block" id="u575_img" src="{% static 'images/list.png' %}" alt="Значок"/>
+                    </div>
+                    <div class="clearfix grpelem" id="u282-4"><!-- content -->
+                        <a href="{% url 'reminders' cat.id %}">{{ cat.name }}</a>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+
       <a class="nonblock nontext rounded-corners clearfix colelem" id="u663-4" href="{% url 'main' %}">На главную</a>
      </div>
      <div class="clearfix grpelem" id="pu330-4"><!-- column -->
@@ -25,12 +30,31 @@
        <p>Напоминания</p>
       </div>
       <div class="clearfix colelem" id="pu450"><!-- group -->
-       <div class="clip_frame grpelem" id="u450"><!-- image -->
-        <img class="block" id="u450_img" src="{% static 'images/plus.png' %}" alt="Добавить событие"/>
-       </div>
-       <div class="clearfix grpelem" id="u333-4"><!-- content -->
-        <p>Новое напоминание</p>
-       </div>
+
+         <ul class="categories">
+                {% for rem in reminders %}
+                <li class="reminder">
+                        <div class="reminder__content">
+                            <div class="reminder__name" >
+                                <p>{{ rem.name }}</p>
+                            </div>
+                        </div>
+                        <div class="line_list colelem"></div>
+                </li>
+                {% endfor %}
+            </ul>
+        <form method="post">
+               {% csrf_token %}
+            <input name="name">
+
+               <div class="clip_frame grpelem" id="u450"><!-- image -->
+               
+                <img class="block" id="u450_img" src="{% static 'images/plus.png' %}" alt="Добавить событие"/>
+               </div>
+               <div class="clearfix grpelem" id="u333-4"><!-- content -->
+                <p>Новое напоминание</p>
+               </div>
+            </form>
       </div>
      </div>
     </div>
