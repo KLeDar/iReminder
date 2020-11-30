@@ -32,10 +32,10 @@ html {
 }
 #header a:last-child{
 	font-size: 20px;
-	left: 84%;
+	left: 82.3%;
 }
 
-#welcome__heading {
+#center__heading {
 	z-index: 7;
 	min-height: 48px;
 	background-color: transparent;
@@ -48,7 +48,7 @@ html {
 	margin-left: 38.23%;
 }
 
-#welcome__text {
+#center__text {
 	z-index: 19;
 	min-height: 180px;
 	background-color: transparent;
@@ -58,13 +58,13 @@ html {
 	margin-left: 27.82%;
 }
 
-#welcome__text p{
+#center__text p{
 	font-size: 24px;
 	text-align: center;
 	line-height: 29px;
 }
 
-#welcome__button {
+#center__button {
 	z-index: 11;
 	margin-top: 68px;
 	width: 100%;
@@ -106,6 +106,22 @@ html {
 	margin-top: -1px;
 	width: 11.72%;
 	left: 55.84%;
+}
+#button_home {
+	z-index: 15;
+	min-height: 38px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #949498;
+	background-color: transparent;
+	border-radius: 10px;
+	font-size: 23px;
+	text-align: center;
+	line-height: 38px;
+	position: relative;
+	width: 11.72%;
+	transform: translate(-50%, 0px);
+	left: 50%;
 }
 
 #footer {

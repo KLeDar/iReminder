@@ -23,7 +23,7 @@
             {% endfor %}
         </ul>
 
-      <a class="nonblock nontext rounded-corners clearfix colelem" id="u663-4" href="{% url 'main' %}">На главную</a>
+      <a class="nonblock nontext rounded-corners clearfix colelem" id="u663-4" href="/">На главную</a>
      </div>
      <div class="clearfix grpelem" id="pu330-4"><!-- column -->
       <div class="clearfix colelem" id="u330-4"><!-- content -->
@@ -44,17 +44,22 @@
                 {% endfor %}
             </ul>
         <form method="post">
-               {% csrf_token %}
-            <input name="name">
-
-               <div class="clip_frame grpelem" id="u450"><!-- image -->
-               
-                <img class="block" id="u450_img" src="{% static 'images/plus.png' %}" alt="Добавить событие"/>
-               </div>
-               <div class="clearfix grpelem" id="u333-4"><!-- content -->
+            {% csrf_token %}
+            <label>
+                <input name="name">
+            </label>
+            <label>
+                <input name="category_id" value="{{ category_id }}">
+            </label>
+            <div class="clip_frame grpelem" id="u450"><!-- image -->
+                <button type="submit">
+                    <img class="block" id="u450_img" src="{% static 'images/plus.png' %}" alt="Добавить событие"/>
+                </button>
+            </div>
+            <div class="clearfix grpelem" id="u333-4"><!-- content -->
                 <p>Новое напоминание</p>
-               </div>
-            </form>
+            </div>
+        </form>
       </div>
      </div>
     </div>

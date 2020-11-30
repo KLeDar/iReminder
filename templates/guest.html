@@ -2,18 +2,18 @@
 
 {% block content %}
 
-   <div id="welcome__heading" class="clearfix colelem">
+   <div id="center__heading" class="clearfix colelem">
        <h2>iReminder</h2>
    </div>
 
-   <div id="welcome__text" class="clearfix colelem">
+   <div id="center__text" class="clearfix colelem">
        <p>«iReminder» — это веб приложение для удобного ведения списка дел. Сервис помогает пользователям не забывать о предстоящих важных событиях и задачах.</p>
        <p>После создания аккаунта, пользователь может начать вносить свои дела, деля их по проектам и указывая сроки.</p>
    </div>
 
-   <div id="welcome__button" class="clearfix colelem">
-       <a id="button_login" class="nonblock nontext rounded-corners clearfix grpelem" href="{% url 'auth' %}">Войти</a>
-       <a id="button_signin" class="nonblock nontext rounded-corners clearfix grpelem" href="{% url 'registration' %}">Регистрация</a>
+   <div id="center__button" class="clearfix colelem">
+       <a id="button_login" class="nonblock nontext rounded-corners clearfix grpelem" href="{% url 'login' %}">Войти</a>
+       <a id="button_signin" class="nonblock nontext rounded-corners clearfix grpelem" href="{% url 'main' %}">Регистрация</a>
    </div>
 
    <div id="footer" class="clearfix colelem">

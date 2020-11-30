@@ -1,11 +1,14 @@
+from django.contrib import auth
 from django.db import models
+from django.contrib.auth.models import User
 
-
+'''
 class User(models.Model):
     login = models.CharField(max_length=15)
     password = models.CharField(max_length=20)
     name = models.CharField(max_length=50)
     email = models.CharField(max_length=20)
+'''
 
 
 class Reminder_Category(models.Model):
@@ -16,8 +19,9 @@ class Reminder_Category(models.Model):
 class Reminder(models.Model):
     name = models.CharField(max_length=50)
     completed = models.IntegerField()
-    date_of_completion = models.DateField()
+    date_of_completion = models.DateField(null=True)
     category = models.ForeignKey(Reminder_Category, on_delete=models.CASCADE)
+
 
 '''
 

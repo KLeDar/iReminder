@@ -17,23 +17,6 @@ html {
 	background-color: #323232;
 }
 
-#header a {
-	z-index: 3;
-	min-height: 42px;
-	background-color: transparent;
-	font-size: 25px;
-	line-height: 41px;
-	color: #FFFFFF;
-	text-indent: 24px;
-	position: relative;
-	width: auto;
-	text-decoration: none;
-}
-#header a:last-child{
-	font-size: 20px;
-	left: 84%;
-}
-
 #pu103 {
 	z-index: 11;
 	margin-top: 17px;
@@ -76,7 +59,7 @@ html {
 	left: 6.55%;
 }
 
-#u660-4 {
+#reset{
 	z-index: 87;
 	min-height: 38px;
 	border-style: solid;
@@ -90,6 +73,23 @@ html {
 	position: relative;
 	margin-right: -10000px;
 	margin-top: -1px;
+	width: 11.72%;
+	left: 87.45%;
+}
+#logout{
+	z-index: 87;
+	min-height: 38px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #949498;
+	background-color: transparent;
+	border-radius: 10px;
+	font-size: 23px;
+	text-align: center;
+	line-height: 38px;
+	position: relative;
+	margin-right: -10000px;
+	margin-top: 50px;
 	width: 11.72%;
 	left: 87.45%;
 }
@@ -381,7 +381,7 @@ html {
 	z-index: 65;
 	background-color: #FFFFFF;
 	border-radius: 10px;
-	padding-bottom: 439px;
+	padding-bottom: 100px;
 	position: relative;
 	margin-right: -10000px;
 	margin-top: 52px;

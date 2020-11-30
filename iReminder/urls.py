@@ -14,18 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.contrib.auth import views
 
-from reminders.views import GuestView, AuthView, RegistrationView, MainView, RemindersView, custom_handler404, custom_handler500
+from reminders.views import GuestView, RegistrationView, MainView, RemindersView, custom_handler404, custom_handler500
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
+    path('', include('accounts.urls')),
     path('', GuestView.as_view(), name='guest'),
-    path('auth/', AuthView.as_view(), name='auth'),
-    path('registration/', RegistrationView.as_view(), name='registration'),
-    path('user/', MainView.as_view(), name='main'),
-    path('user/<int:category_id>/', RemindersView.as_view(), name='reminders'),
+    #path('auth/', views.LoginView.as_view(), name='auth'),
+    #path('registration/', RegistrationView.as_view(), name='registration'),
+    path('main/', MainView.as_view(), name='main'),
+    path('main/<int:category_id>/', RemindersView.as_view(), name='reminders'),
 
 ]
 

@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block main %}
+   <a class="nonblock nontext rounded-corners clearfix colelem" id="u666-4" href="{% url 'login' %}">Регистрация</a>
+   <div class="clearfix colelem" id="u225-4"><!-- content -->
+    <p>Войти в iReminder</p>
+   </div>
+   <div class="rounded-corners clearfix colelem" id="u228"><!-- column -->
+   <form method="post">
+    {% csrf_token %}
+        {{ form|crispy }}
+         <button type="submit" class="nonblock nontext clip_frame grpelem" id="u512">
+          <img class="svg" id="u508" src="{% static 'images/enter.svg' %}" alt="Войти"/>
+         </button>
+   </form>
+   </div>
+{% endblock %}
