@@ -3,66 +3,80 @@
 {% load static %}
 
 {% block content %}
-
-  <div class="clearfix borderbox" id="page"><!-- column -->
+    <link href="{% static 'css/reminders.css' %}" rel="stylesheet" type="text/css"/>
 
     <div class="clearfix colelem" id="pu339"><!-- group -->
-     <div class="clearfix grpelem" id="u339"><!-- column -->
-        <ul>
-            {% for cat in categories %}
-            <li>
-                <div class="rounded-corners clearfix colelem" id="u279"><!-- group -->
-                    <div class="clip_frame grpelem" id="u575"><!-- image -->
-                        <img class="block" id="u575_img" src="{% static 'images/list.png' %}" alt="Значок"/>
-                    </div>
-                    <div class="clearfix grpelem" id="u282-4"><!-- content -->
-                        <a href="{% url 'reminders' cat.id %}">{{ cat.name }}</a>
-                    </div>
-                </div>
-            </li>
-            {% endfor %}
-        </ul>
 
-      <a class="nonblock nontext rounded-corners clearfix colelem" id="u663-4" href="/">На главную</a>
-     </div>
-     <div class="clearfix grpelem" id="pu330-4"><!-- column -->
-      <div class="clearfix colelem" id="u330-4"><!-- content -->
-       <p>Напоминания</p>
-      </div>
-      <div class="clearfix colelem" id="pu450"><!-- group -->
-
-         <ul class="categories">
-                {% for rem in reminders %}
-                <li class="reminder">
-                        <div class="reminder__content">
-                            <div class="reminder__name" >
-                                <p>{{ rem.name }}</p>
-                            </div>
+        <div class="clearfix grpelem" id="u339"><!-- column -->
+        <a class="nonblock nontext rounded-corners clearfix colelem" id="u663-4" href="/">На главную</a>
+            <ul>
+                {% for cat in categories %}
+                <li class="category_list">
+                    <div class="rounded-corners clearfix colelem" id="u279">
+                        <div class="clip_frame grpelem" id="u575">
+                            <img class="block" id="u575_img" src="{% static 'images/list.png' %}" alt="Значок"/>
                         </div>
-                        <div class="line_list colelem"></div>
+                        <div class="clearfix grpelem" id="u282-4"><!-- content -->
+                            <a href="{% url 'reminders' cat.id %}">{{ cat.name }}</a>
+                        </div>
+                    </div>
                 </li>
                 {% endfor %}
             </ul>
-        <form method="post">
+        </div>
+
+        <div class="clearfix grpelem" id="pu330-4">
+            <div class="clearfix colelem" id="u330-4">
+                <p>{{ current_category_name }}</p>
+            </div>
+
+             <div class="clearfix colelem" id="pu856">
+                <ul class="categories">
+                {% for rem in reminders %}
+                <li class="reminder_list">
+                    <div class="clip_frame grpelem" id="u856">
+                        <label>
+                            <input type="checkbox" >
+                        </label>
+                    </div>
+                    <div class="clearfix grpelem" id="u839-4">
+                        <p>{{ rem.name }}</p>
+                    </div>
+                    <div class="clearfix grpelem" id="u853-4">
+                        <p>{{ rem.date_of_completion }}</p>
+                    </div>
+                    <form action="{% url 'main' %}">
+                        <button class="clip_frame grpelem" id="edit" >
+                            <img class="svg" id="u878" src="{% static 'images/edit.png' %}" alt="Редактировать событие"/>
+                        </button>
+                    </form>
+                    <form action="{% url 'delete_reminder' category_id rem.id %}">
+                        <button class="clip_frame grpelem" id="remove" >
+                            <img class="svg" id="u878" src="{% static 'images/remove.svg' %}" alt="Удалить событие"/>
+                        </button>
+                    </form>
+                    <div class="colelem" id="u836"></div>
+                </li>
+                {% endfor %}
+                </ul>
+             </div>
+
+
+
+            <form method="post">
             {% csrf_token %}
-            <label>
-                <input name="name">
-            </label>
-            <label>
-                <input name="category_id" value="{{ category_id }}">
-            </label>
-            <div class="clip_frame grpelem" id="u450"><!-- image -->
-                <button type="submit">
+            <div class="clearfix colelem" id="Add_Reminder">
+
+                <button type="submit" class="clip_frame grpelem" id="u450">
                     <img class="block" id="u450_img" src="{% static 'images/plus.png' %}" alt="Добавить событие"/>
                 </button>
+                <label>
+                    <input name="category_id" value="{{ category_id }}" hidden>
+                </label>
+                <input class="nonblock nontext rounded-corners clearfix grpelem" id="u863-4" name="name" placeholder="Новое напоминание" required>
             </div>
-            <div class="clearfix grpelem" id="u333-4"><!-- content -->
-                <p>Новое напоминание</p>
-            </div>
-        </form>
-      </div>
-     </div>
+            </form>
+
+         </div>
     </div>
-   </div>
-  </div>
 {% endblock %}

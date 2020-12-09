@@ -94,7 +94,7 @@ html {
 	left: 87.45%;
 }
 
-#pu119 {
+#filter_buttons {
 	z-index: 18;
 	margin-top: 53px;
 	width: 100%;
@@ -358,11 +358,11 @@ html {
 	font-weight: bold;
 	position: relative;
 	margin-right: -10000px;
-	width: 13.13%;
+	width: 20.13%;
 	left: 23.75%;
 }
 
-#categories_list__header p:last-child {
+#categories_list__header a:last-child {
 	z-index: 70;
 	min-height: 30px;
 	background-color: transparent;
@@ -381,7 +381,7 @@ html {
 	z-index: 65;
 	background-color: #FFFFFF;
 	border-radius: 10px;
-	padding-bottom: 100px;
+	padding-bottom: 0px;
 	position: relative;
 	margin-right: -10000px;
 	margin-top: 52px;
@@ -457,13 +457,71 @@ html {
 	width: 100%;
 }
 
-.category:first-child {
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
+.category{
+	padding: 0 0 100px 0;
 }
 
-.category:last-child {
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
+
+.center{
+ display: block;
+ margin: 0 auto;
 }
-li{padding: 0 0 100px 0;}
+
+#back {
+	z-index: 39;
+	min-height: 38px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #949498;
+	background-color: transparent;
+	border-radius: 10px;
+	font-size: 23px;
+	text-align: center;
+	line-height: 38px;
+	margin-top: 33px;
+	position: relative;
+	width: 11.72%;
+	margin-left: 3%;
+}
+
+
+#Add_Reminder {
+	z-index: 21;
+	width: 22.58%;
+	padding: 30px 0 0 30px;
+}
+
+#u450 {
+	z-index: 21;
+	background-color: transparent;
+	position: relative;
+	margin-right: -10000px;
+	margin-top: 3px;
+	width: 15%;
+}
+
+#u450_img {
+	width: 100%;
+}
+
+#u863-4 {
+	z-index: 40;
+	min-height: 36px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #F7931E;
+	background-color: transparent;
+	border-radius: 10px;
+	color: black;
+	line-height: 42px;
+	font-size: 21px;
+	text-align: center;
+	text-indent: -4px;
+	margin-bottom: -1px;
+	position: relative;
+	margin-right: -10000px;
+	margin-top: -1px;
+	width: 82.2%;
+	left: 16.92%;
+	margin-left: 20px;
+}

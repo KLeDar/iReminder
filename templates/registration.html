@@ -1,28 +1,18 @@
 {% extends 'layout.html' %}
+{% load crispy_forms_tags %}
 
-{% block content %}
-  <div class="clearfix borderbox" id="page"><!-- column -->
+{% block main %}
+    <a class="nonblock nontext rounded-corners clearfix colelem" id="u669-4" href="{% url 'login' %}">Войти</a>
+    <div id="center__heading" class="clearfix colelem">
+        <h4>Регистрация в iReminder</h4>
+    </div>
+    <div class="pointer_cursor rounded-corners clearfix colelem" id="u475"><!-- column -->
+        <form method="post">
+        {% csrf_token %}
+            {{ info }}
 
-   <a class="nonblock nontext rounded-corners clearfix colelem" id="u669-4" href="{% url 'auth' %}">Войти</a>
-   <a class="nonblock nontext clearfix colelem" id="u474-4" href="main.html"><!-- content --><p>Регистрация в iReminder</p></a>
-   <div class="pointer_cursor rounded-corners clearfix colelem" id="u475"><!-- column -->
-    <a class="block" href="main.html"><!-- Block link tag --></a>
-    <div class="position_content" id="u475_position_content">
-     <a class="nonblock nontext clearfix colelem" id="u477-4" href="main.html"><!-- content --><p>Логин</p></a>
-     <a class="nonblock nontext colelem" id="u476" href="main.html"><!-- simple frame --></a>
-     <a class="nonblock nontext clearfix colelem" id="u478-4" href="main.html"><!-- content --><p>Пароль</p></a>
+            {{ form|crispy }}
+            <button  type="submit"  class="btn btn-success center">Создать аккаунт</button>
+       </form>
     </div>
-   </div>
-   <a class="nonblock nontext clearfix colelem" id="u519-4" href="main.html"><!-- content --><p>По желанию</p></a>
-   <div class="pointer_cursor rounded-corners clearfix colelem" id="u496"><!-- column -->
-    <a class="block" href="main.html"><!-- Block link tag --></a>
-    <div class="position_content" id="u496_position_content">
-     <a class="nonblock nontext clearfix colelem" id="u498-4" href="main.html"><!-- content --><p>Email</p></a>
-     <a class="nonblock nontext colelem" id="u497" href="main.html"><!-- simple frame --></a>
-     <a class="nonblock nontext clearfix colelem" id="u499-4" href="main.html"><!-- content --><p>Имя</p></a>
-    </div>
-   </div>
-   <a class="nonblock nontext rounded-corners clearfix colelem" id="u479-4" href="{% url 'main' %}">Создать аккаунт</a>
-   <div class="verticalspacer" data-offset-top="699" data-content-above-spacer="699" data-content-below-spacer="250" data-sizePolicy="fixed" data-pintopage="page_fixedLeft"></div>
-  </div>
 {% endblock %}

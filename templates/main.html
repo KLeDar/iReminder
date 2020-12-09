@@ -1,6 +1,7 @@
 {% extends 'layout.html' %}
-
+{% load tags %}
 {% load static %}
+
 
 {% block content %}
 
@@ -10,7 +11,7 @@
       <img class="block" id="u106_img" src="{% static 'images/loupe.png' %}" alt="Значок лупы"/>
      </div>
      <div class="clearfix grpelem" id="u116-4"><!-- content -->
-      <p>Поиск...</p>
+      <p>Поиск</p>
      </div>
     </div>
 
@@ -21,68 +22,68 @@
    </div>
 
 
-   <div class="clearfix colelem" id="pu119"><!-- group -->
-    <div class="rounded-corners clearfix grpelem" id="u119"><!-- column -->
+   <div class="clearfix colelem" id="filter_buttons"><!-- group -->
+    <button class="rounded-corners clearfix grpelem" id="u119"><!-- column -->
      <div class="clearfix colelem" id="pu125"><!-- group -->
       <div class="clip_frame grpelem" id="u125"><!-- image -->
        <img class="block" id="u125_img" src="{% static 'images/box.png' %}" alt="Значок"/>
       </div>
       <div class="clearfix grpelem" id="u122-4"><!-- content -->
-       <p>13</p>
+       <p>{{ all_reminders}}</p>
       </div>
      </div>
      <div class="clearfix colelem" id="u135-4"><!-- content -->
       <p>Все</p>
      </div>
-    </div>
-    <div class="rounded-corners clearfix grpelem" id="u138"><!-- column -->
+    </button>
+    <button class="rounded-corners clearfix grpelem" id="u138"><!-- column -->
      <div class="position_content" id="u138_position_content">
       <div class="clearfix colelem" id="pu165"><!-- group -->
        <div class="clip_frame grpelem" id="u165"><!-- image -->
         <img class="block" id="u165_img" src="{% static 'images/calendar.png' %}" alt="Значок"/>
        </div>
        <div class="clearfix grpelem" id="u147-5"><!-- content -->
-        <p id="u147-3"><span id="u147">&nbsp;</span><span id="u147-2">3</span></p>
+        <p id="u147-3"><span id="u147">&nbsp;</span><span id="u147-2">{{ near_of_date_reminders }}</span></p>
        </div>
       </div>
       <div class="clearfix colelem" id="u156-4"><!-- content -->
        <p>Ближайшие</p>
       </div>
      </div>
-    </div>
-    <div class="rounded-corners clearfix grpelem" id="u141"><!-- column -->
+    </button>
+    <button class="rounded-corners clearfix grpelem" id="u141"><!-- column -->
      <div class="clearfix colelem" id="pu175"><!-- group -->
       <div class="clip_frame grpelem" id="u175"><!-- image -->
        <img class="block" id="u175_img" src="{% static 'images/time.png' %}" alt="Значок"/>
       </div>
       <div class="clearfix grpelem" id="u150-5"><!-- content -->
-       <p id="u150-3"><span id="u150">&nbsp;</span><span id="u150-2">5</span></p>
+       <p id="u150-3"><span id="u150">&nbsp;</span><span id="u150-2">{{ out_of_date_reminders }}</span></p>
       </div>
      </div>
      <div class="clearfix colelem" id="u159-4"><!-- content -->
       <p id="u159-2">Просроченные</p>
      </div>
-    </div>
-    <div class="rounded-corners clearfix grpelem" id="u144"><!-- column -->
+    </button>
+    <button class="rounded-corners clearfix grpelem" id="u144"><!-- column -->
      <div class="clearfix colelem" id="pu185"><!-- group -->
       <div class="clip_frame grpelem" id="u185"><!-- image -->
        <img class="block" id="u185_img" src="{% static 'images/check.png' %}" alt="Значок"/>
       </div>
       <div class="clearfix grpelem" id="u153-5"><!-- content -->
-       <p id="u153-3"><span id="u153">&nbsp;</span><span id="u153-2">2</span></p>
+       <p id="u153-3"><span id="u153">&nbsp;</span><span id="u153-2">{{ completed_reminders }}</span></p>
       </div>
      </div>
      <div class="clearfix colelem" id="u162-4"><!-- content -->
       <p>Завершённые</p>
      </div>
-    </div>
+    </button>
    </div>
 
 
    <div id="categories_list" class="clearfix colelem">
        <div id="categories_list__header">
-           <p class="clearfix grpelem">Мои списки</p>
-           <p class="clearfix grpelem">Править</p>
+           <p class="clearfix grpelem">Мои категории</p>
+           <a class="clearfix grpelem" onclick="alert('Клик!')" type="button">Править</a>
        </div>
 
         <div id="categories_list__content" class="rounded-corners clearfix grpelem">
@@ -98,7 +99,7 @@
                                 <p>{{ cat.name }}</p>
                             </div>
                             <div class="category_count clearfix grpelem">
-                                <p>{{ cat.id }}</p>
+                                <p>{{ cat.id|count_reminders }}</p>
                             </div>
 
                             <a class="category_arrow nonblock nontext clip_frame grpelem" href="{% url 'reminders' cat.id %}"><img src="{% static 'images/arrow.png' %}" alt="Перейти к событиям"/></a>
@@ -108,6 +109,16 @@
                 </li>
                 {% endfor %}
             </ul>
+            <form method="post">
+            {% csrf_token %}
+            <div class="clearfix colelem" id="Add_Reminder">
+
+                <button type="submit" class="clip_frame grpelem" id="u450">
+                    <img class="block" id="u450_img" src="{% static 'images/plus.png' %}" alt="Добавить событие"/>
+                </button>
+                <input class="nonblock nontext rounded-corners clearfix grpelem" id="u863-4" name="name" placeholder="Новая категория" required>
+            </div>
+            </form>
         </div>
    </div>
 {% endblock %}

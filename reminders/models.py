@@ -15,12 +15,18 @@ class Reminder_Category(models.Model):
     name = models.CharField(max_length=50)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.name
+
 
 class Reminder(models.Model):
     name = models.CharField(max_length=50)
     completed = models.IntegerField()
     date_of_completion = models.DateField(null=True)
     category = models.ForeignKey(Reminder_Category, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
 
 
 '''
@@ -35,4 +41,4 @@ Reminder.objects.create(name='Сдача курсача',
                         date_of_completion="2020-12-10",
                         category=Reminder_Category.objects.get(name='Курсовая'))
                         
-                        '''
+'''

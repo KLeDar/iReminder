@@ -14,19 +14,28 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 from django.contrib.auth import views
 
 from reminders.views import GuestView, RegistrationView, MainView, RemindersView, custom_handler404, custom_handler500
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('accounts.urls')),
     path('', GuestView.as_view(), name='guest'),
-    #path('auth/', views.LoginView.as_view(), name='auth'),
-    #path('registration/', RegistrationView.as_view(), name='registration'),
     path('main/', MainView.as_view(), name='main'),
     path('main/<int:category_id>/', RemindersView.as_view(), name='reminders'),
+    path('main/<int:category_id>/delete/<int:reminder_id>', RemindersView.delete, name='delete_reminder'),
+    # Процессы аутентификации
+    path('registration/', RegistrationView.as_view(), name='registration'),
+    path('login/', views.LoginView.as_view(), name='login'),
+    path('logout/', views.LogoutView.as_view(), name='logout'),
+    path('password-change/', views.PasswordChangeView.as_view(), name='password_change'),
+    path('password-change/done/', views.PasswordChangeDoneView.as_view(), name='password_change_done'),
+    # Сброс пароля через email
+    #path('password-reset/', views.PasswordResetView.as_view(), name='password_reset'),
+    #path('password-reset/done/', views.PasswordResetDoneView.as_view(), name='password_reset_done'),
+    #path('reset/<uidb64>/<token>/', views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    #path('reset/done/', views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
 
 ]
 
