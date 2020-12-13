@@ -2,7 +2,7 @@ html {
 	z-index: 1;
 	height: 950px;
 	background-image: none;
-	border-width: 0px;
+	border-width: 0;
 	border-color: #E3E3E8;
 	background-color: transparent;
 	width: 100%;
@@ -16,11 +16,13 @@ html {
 	width: 100%;
 }
 
-#u339 {
+#sidebar {
 	z-index: 3;
 	background-color: #F5F5FA;
 	padding-top: 23px;
-	padding-bottom: 31.000000000000114px;
+	/*padding-bottom: 500px; */
+	min-height: 100%;
+	/*height: 57em;*/
 	position: relative;
 	margin-right: -10000px;
 	width: 20.16%;
@@ -93,7 +95,7 @@ html {
 	font-size: 33px;
 	font-weight: bold;
 	position: relative;
-	width: 16.01%;
+	width: auto;
 	margin-left: 1.28%;
 }
 
@@ -109,10 +111,10 @@ html {
 	position: relative;
 	margin-right: -10000px;
 	margin-top: 7px;
-	width: 2.56%;
+	width: 100%;
 }
 
-#u839-4 {
+#reminder_name {
 	z-index: 30;
 	min-height: 52px;
 	background-color: transparent;
@@ -120,11 +122,19 @@ html {
 	line-height: 52px;
 	position: relative;
 	margin-right: -10000px;
-	width: 11.49%;
+	width: 65%;
 	left: 3.36%;
 }
-
-#u853-4 {
+#reminder_name p{
+    white-space: nowrap; /* Отменяем перенос текста */
+    overflow: hidden; /* Обрезаем содержимое */
+    padding: 5px; /* Поля */
+    text-overflow: ellipsis; /* Многоточие */
+   }
+#reminder_name p:hover {
+    white-space: normal; /* Обычный перенос текста */
+   }
+#reminder_datetime {
 	z-index: 34;
 	min-height: 52px;
 	background-color: transparent;
@@ -133,8 +143,8 @@ html {
 	line-height: 52px;
 	position: relative;
 	margin-right: -10000px;
-	width: 13.91%;
-	left: 15.38%;
+	width: auto;
+	left: 80%;
 }
 
 #edit {
@@ -187,6 +197,7 @@ html {
 #Add_Reminder {
 	z-index: 21;
 	width: 22.58%;
+	padding-bottom: 30px;
 }
 
 #u450 {

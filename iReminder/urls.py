@@ -17,14 +17,19 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views
 
-from reminders.views import GuestView, RegistrationView, MainView, RemindersView, custom_handler404, custom_handler500
+from reminders.views import GuestView, RegistrationView, MainView, RemindersView, delete_reminder, complete_reminder, \
+    RemindersFilterView, RemindersSearchView, custom_handler404, custom_handler500
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', GuestView.as_view(), name='guest'),
     path('main/', MainView.as_view(), name='main'),
     path('main/<int:category_id>/', RemindersView.as_view(), name='reminders'),
-    path('main/<int:category_id>/delete/<int:reminder_id>', RemindersView.delete, name='delete_reminder'),
+    path('main/<int:category_id>/delete_reminder/<int:reminder_id>', delete_reminder, name='delete_reminder'),
+    path('main/<int:category_id>/complete_reminder/<int:reminder_id>', complete_reminder, name='complete_reminder'),
+    # Поиск и фильтрация
+    path('main/search/', RemindersSearchView.as_view(), name='search'),
+    path('main/filter/<str:filter_name>', RemindersFilterView.as_view(), name='filter'),
     # Процессы аутентификации
     path('registration/', RegistrationView.as_view(), name='registration'),
     path('login/', views.LoginView.as_view(), name='login'),

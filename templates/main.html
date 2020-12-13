@@ -5,38 +5,38 @@
 
 {% block content %}
 
-   <div class="clearfix colelem" id="pu103"><!-- group -->
-    <div class="rounded-corners clearfix grpelem" id="u103"><!-- group -->
-     <div class="clip_frame grpelem" id="u106"><!-- image -->
-      <img class="block" id="u106_img" src="{% static 'images/loupe.png' %}" alt="Значок лупы"/>
-     </div>
-     <div class="clearfix grpelem" id="u116-4"><!-- content -->
-      <p>Поиск</p>
-     </div>
+   <div class="clearfix colelem" id="header_bottom">
+    <div class="rounded-corners clearfix grpelem" id="search_field">
+        <form action="{% url 'search' %}">
+            <button class="clip_frame grpelem" id="u106">
+                <img class="block" id="u106_img" src="{% static 'images/loupe.png' %}" alt="Значок лупы"/>
+            </button>
+            <input name="search_name" class="clearfix grpelem" id="u116-4" placeholder="Поиск" required>
+        </form>
     </div>
-
-       <a class="reset nonblock nontext rounded-corners clearfix grpelem" id="reset" href="{% url 'password_change' %}">Сменить пароль</a>
-       <a class="reset nonblock nontext rounded-corners clearfix grpelem" id="logout" href="{% url 'logout' %}">Выйти</a>
-
-
+   <a class="reset nonblock nontext rounded-corners clearfix grpelem" id="reset" href="{% url 'password_change' %}">Сменить пароль</a>
+   <a class="reset nonblock nontext rounded-corners clearfix grpelem" id="logout" href="{% url 'logout' %}">Выйти</a>
    </div>
 
 
    <div class="clearfix colelem" id="filter_buttons"><!-- group -->
-    <button class="rounded-corners clearfix grpelem" id="u119"><!-- column -->
-     <div class="clearfix colelem" id="pu125"><!-- group -->
-      <div class="clip_frame grpelem" id="u125"><!-- image -->
-       <img class="block" id="u125_img" src="{% static 'images/box.png' %}" alt="Значок"/>
-      </div>
-      <div class="clearfix grpelem" id="u122-4"><!-- content -->
-       <p>{{ all_reminders}}</p>
-      </div>
-     </div>
-     <div class="clearfix colelem" id="u135-4"><!-- content -->
-      <p>Все</p>
-     </div>
-    </button>
-    <button class="rounded-corners clearfix grpelem" id="u138"><!-- column -->
+    <form action="{% url 'filter' 'all' %}">
+        <button class="rounded-corners clearfix grpelem" id="u119"><!-- column -->
+         <div class="clearfix colelem" id="pu125"><!-- group -->
+          <div class="clip_frame grpelem" id="u125"><!-- image -->
+           <img class="block" id="u125_img" src="{% static 'images/box.png' %}" alt="Значок"/>
+          </div>
+          <div class="clearfix grpelem" id="u122-4"><!-- content -->
+           <p>{{ all_reminders}}</p>
+          </div>
+         </div>
+         <div class="clearfix colelem" id="u135-4"><!-- content -->
+          <p>Все</p>
+         </div>
+        </button>
+    </form>
+    <form action="{% url 'filter' 'near_of_date' %}">
+        <button class="rounded-corners clearfix grpelem" id="u138"><!-- column -->
      <div class="position_content" id="u138_position_content">
       <div class="clearfix colelem" id="pu165"><!-- group -->
        <div class="clip_frame grpelem" id="u165"><!-- image -->
@@ -51,7 +51,9 @@
       </div>
      </div>
     </button>
-    <button class="rounded-corners clearfix grpelem" id="u141"><!-- column -->
+    </form>
+    <form action="{% url 'filter' 'out_of_date' %}">
+        <button class="rounded-corners clearfix grpelem" id="u141"><!-- column -->
      <div class="clearfix colelem" id="pu175"><!-- group -->
       <div class="clip_frame grpelem" id="u175"><!-- image -->
        <img class="block" id="u175_img" src="{% static 'images/time.png' %}" alt="Значок"/>
@@ -64,7 +66,9 @@
       <p id="u159-2">Просроченные</p>
      </div>
     </button>
-    <button class="rounded-corners clearfix grpelem" id="u144"><!-- column -->
+    </form>
+    <form action="{% url 'filter' 'completed' %}">
+        <button class="rounded-corners clearfix grpelem" id="u144">
      <div class="clearfix colelem" id="pu185"><!-- group -->
       <div class="clip_frame grpelem" id="u185"><!-- image -->
        <img class="block" id="u185_img" src="{% static 'images/check.png' %}" alt="Значок"/>
@@ -77,6 +81,7 @@
       <p>Завершённые</p>
      </div>
     </button>
+    </form>
    </div>
 
 
@@ -111,8 +116,7 @@
             </ul>
             <form method="post">
             {% csrf_token %}
-            <div class="clearfix colelem" id="Add_Reminder">
-
+            <div class="clearfix colelem" id="Add_Category">
                 <button type="submit" class="clip_frame grpelem" id="u450">
                     <img class="block" id="u450_img" src="{% static 'images/plus.png' %}" alt="Добавить событие"/>
                 </button>

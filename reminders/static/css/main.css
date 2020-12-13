@@ -17,13 +17,13 @@ html {
 	background-color: #323232;
 }
 
-#pu103 {
+#header_bottom {
 	z-index: 11;
 	margin-top: 17px;
 	width: 100%;
 }
 
-#u103 {
+#search_field {
 	z-index: 11;
 	background-color: #E3E3E8;
 	border-radius: 10px;
@@ -421,7 +421,7 @@ html {
 	line-height: 52px;
 	position: relative;
 	margin-right: -10000px;
-	width: 21.02%;
+	width: 70%;
 }
 
 .category_count {
@@ -485,7 +485,7 @@ html {
 }
 
 
-#Add_Reminder {
+#Add_Category {
 	z-index: 21;
 	width: 22.58%;
 	padding: 30px 0 0 30px;

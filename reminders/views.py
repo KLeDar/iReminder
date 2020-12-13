@@ -1,6 +1,4 @@
 import datetime
-from itertools import count
-
 from django.contrib.auth import login
 from django.http import HttpResponseNotFound, HttpResponse, Http404, HttpResponseRedirect, request
 from django.shortcuts import render, redirect
@@ -50,10 +48,6 @@ class MainView(View):
             raise Http404
         if request.user.is_superuser:
             return redirect('/admin/')
-        print(Reminder.objects.filter(category__author=get_user_id(request)))
-        print("@@@")
-        print(len(Reminder.objects.filter(category__author=get_user_id(request))))
-        print(datetime.datetime.now())
         context = {'title': 'Главное меню',
                    'user_fullname': get_header_name(request),
                    'all_reminders': len(get_user_reminder(request)),
@@ -85,9 +79,11 @@ class RemindersView(View):
         context = {'title': 'События',
                    'category_id': category_id,
                    'user_fullname': get_header_name(request),
-                   'current_category_name': Reminder_Category.objects.get(id=category_id),
+                   'header_list': Reminder_Category.objects.get(id=category_id),
                    'categories': get_categories(request),
                    'reminders': Reminder.objects.filter(category_id=category_id),
+                   'categories_list': True,
+                   'add_reminder': True,
                    }
         return render(request, 'reminders.html', context=context)
 
@@ -98,9 +94,67 @@ class RemindersView(View):
                                       completed=0)
             return HttpResponseRedirect(reverse('reminders', kwargs={'category_id': category_id}))
 
-    def delete(request, category_id, reminder_id):
-        functions.delete_reminder(reminder_id)
+
+class RemindersFilterView(View):
+    def get(self, request, filter_name):
+        """
+        if not Reminder_Category.objects.filter(id=category_id):
+            raise Http404
+        if not get_categories(request):
+            raise Http404
+        """
+        header_list = get_translate_filter(filter_name)
+        context = {'title': header_list,
+                   'user_fullname': get_header_name(request),
+                   'header_list': header_list,
+                   'categories': get_categories(request),
+                   'reminders': get_filter(request, filter_name),
+                   'categories_list': False,
+                   'add_reminder': False,
+                   }
+        return render(request, 'reminders.html', context=context)
+
+    def post(self, request, category_id):
+        if request.method == "POST":
+            functions.create_reminder(name=request.POST.get('name'),
+                                      category_id=category_id,
+                                      completed=0)
+            return HttpResponseRedirect(reverse('reminders', kwargs={'category_id': category_id}))
+
+
+class RemindersSearchView(View):
+    def get(self, request):
+        """
+        if not Reminder_Category.objects.filter(id=category_id):
+            raise Http404
+        if not get_categories(request):
+            raise Http404
+        'Событий с таким именем не найдено!'
+        """
+        reminder_name = request.GET.get('search_name')
+        header_list = 'События с именем: ' + reminder_name
+        context = {'title': header_list,
+                   'user_fullname': get_header_name(request),
+                   'header_list': header_list,
+                   'categories': get_categories(request),
+                   'reminders': get_user_reminder(request).filter(name__icontains=reminder_name),
+                   'categories_list': False,
+                   'add_reminder': False,
+                   }
+        return render(request, 'reminders.html', context=context)
+
+
+def delete_reminder(request, category_id, reminder_id):
+    functions.delete_reminder(reminder_id)
+    if category_id:
         return HttpResponseRedirect(reverse('reminders', kwargs={'category_id': category_id}))
+    else:
+        return HttpResponseRedirect(reverse('filter', kwargs={'filter_name': 'all'}))
+
+
+def complete_reminder(request, category_id, reminder_id):
+    functions.complete_reminder(reminder_id)
+    return HttpResponseRedirect(reverse('reminders', kwargs={'category_id': category_id}))
 
 
 def custom_handler404(request, exception):
@@ -123,26 +177,33 @@ def get_user_reminder(request):
     return Reminder.objects.filter(category__author=get_user_id(request))
 
 
+def get_filter(request, filter_name):
+    if filter_name == 'all':
+        return get_user_reminder(request)
+    elif filter_name == 'near_of_date':
+        return get_user_reminder(request).filter(date_of_completion=datetime.datetime.now())
+    elif filter_name == 'out_of_date':
+        return get_user_reminder(request).exclude(date_of_completion=datetime.datetime.now()) \
+            .exclude(date_of_completion=None)
+    elif filter_name == 'completed':
+        return get_user_reminder(request).filter(completed=1)
+    else:
+        raise Http404
+
+
+def get_translate_filter(filter_name):
+    if filter_name == 'all':
+        return 'Все события'
+    elif filter_name == 'near_of_date':
+        return 'Ближайшие события'
+    elif filter_name == 'out_of_date':
+        return 'Просроченые события'
+    elif filter_name == 'completed':
+        return 'Завершённые события'
+
+
 def get_header_name(request):
     if request.user.get_full_name():
         return request.user.get_full_name()
     else:
         return request.user.username
-
-
-'''
-class AuthView(View):
-    def get(self, request):
-        context = {'title': 'Authorization',
-                   }
-        return render(request, 'auth.html', context=context)
-
-
-
-    def post(self, request):
-        if request.method == "POST":
-            login = request.POST.get('login')
-            functions.authorization(login=login,
-                                    password=request.POST.get('password'))
-            return HttpResponseRedirect(reverse('main', login))
-'''
