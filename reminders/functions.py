@@ -9,18 +9,17 @@ def create_reminder(name, category_id, completed):
                             completed=completed)
 
 
-def update_reminder(reminder_id, name, category_id, completed):
+def update_reminder(reminder_id, name, date_of_completion):
     Reminder.objects.filter(id=reminder_id).update(name=name,
-                                                   category_id=category_id,
-                                                   completed=completed)
+                                                   date_of_completion=date_of_completion)
 
 
 def delete_reminder(reminder_id):
     Reminder.objects.filter(id=reminder_id).delete()
 
 
-def complete_reminder(reminder_id):
-    Reminder.objects.filter(id=reminder_id).update(complete=1)
+def complete_reminder(reminder_id, value):
+    Reminder.objects.filter(id=reminder_id).update(completed=value)
 
 
 # Категории событий
@@ -31,9 +30,9 @@ def create_reminder_category(name, author):
 
 
 def update_reminder_category(category_id, name):
-    Reminder.objects.filter(id=category_id).update(name=name)
+    Reminder_Category.objects.filter(id=category_id).update(name=name)
                                                  # author=author)
 
 
 def delete_reminder_category(category_id):
-    Reminder.objects.filter(id=category_id).delete()
+    Reminder_Category.objects.filter(id=category_id).delete()

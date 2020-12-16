@@ -423,7 +423,25 @@ html {
 	margin-right: -10000px;
 	width: 70%;
 }
-
+.category_name p{
+    white-space: nowrap; /* Отменяем перенос текста */
+    overflow: hidden; /* Обрезаем содержимое */
+    text-overflow: ellipsis; /* Многоточие */
+   }
+.category_name p:hover {
+    white-space: normal; /* Обычный перенос текста */
+   }
+.edit_category_name {
+	z-index: 78;
+	min-height: 52px;
+	background-color: transparent;
+	font-size: 26px;
+	line-height: 52px;
+	position: relative;
+	margin-right: -10000px;
+	margin-bottom: 1rem;
+	width: 70%;
+}
 .category_count {
 	z-index: 82;
 	min-height: 29px;
@@ -452,15 +470,9 @@ html {
 	z-index: 86;
 	height: 1px;
 	background-color: #949498;
-	margin-top: 18px;
 	position: relative;
 	width: 100%;
 }
-
-.category{
-	padding: 0 0 100px 0;
-}
-
 
 .center{
  display: block;
@@ -484,6 +496,26 @@ html {
 	margin-left: 3%;
 }
 
+#edit_category {
+	z-index: 44;
+	background-color: transparent;
+	position: relative;
+	margin-right: -10000px;
+	margin-top: 11px;
+	width: auto;
+	left: 90%;
+}
+
+#remove_category {
+	z-index: 44;
+	background-color: transparent;
+	position: relative;
+	margin-right: -10000px;
+	margin-top: 11px;
+	width: auto;
+	left: 96%;
+}
+
 
 #Add_Category {
 	z-index: 21;
@@ -504,7 +536,7 @@ html {
 	width: 100%;
 }
 
-#u863-4 {
+#input_category {
 	z-index: 40;
 	min-height: 36px;
 	border-style: solid;
@@ -521,7 +553,7 @@ html {
 	position: relative;
 	margin-right: -10000px;
 	margin-top: -1px;
-	width: 82.2%;
+	width: 200%;
 	left: 16.92%;
 	margin-left: 20px;
 }

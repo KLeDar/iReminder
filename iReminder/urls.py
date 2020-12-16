@@ -17,14 +17,20 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views
 
-from reminders.views import GuestView, RegistrationView, MainView, RemindersView, delete_reminder, complete_reminder, \
-    RemindersFilterView, RemindersSearchView, custom_handler404, custom_handler500
+from reminders.views import GuestView, RegistrationView, MainView, RemindersView, RemindersFilterView, \
+    RemindersSearchView, delete_reminder, complete_reminder, delete_category, update_category, update_reminder,\
+    custom_handler403, custom_handler404, custom_handler500
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', GuestView.as_view(), name='guest'),
     path('main/', MainView.as_view(), name='main'),
+    # Работа с категориями
     path('main/<int:category_id>/', RemindersView.as_view(), name='reminders'),
+    path('main/delete_category/<int:category_id>/', delete_category, name='delete_category'),
+    path('main/update_category/<int:category_id>/', update_category, name='update_category'),
+    # Работа с событиями
+    path('main/<int:category_id>/update_reminder/<int:reminder_id>', update_reminder, name='update_reminder'),
     path('main/<int:category_id>/delete_reminder/<int:reminder_id>', delete_reminder, name='delete_reminder'),
     path('main/<int:category_id>/complete_reminder/<int:reminder_id>', complete_reminder, name='complete_reminder'),
     # Поиск и фильтрация
@@ -43,6 +49,6 @@ urlpatterns = [
     #path('reset/done/', views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
 
 ]
-
+handler403 = custom_handler403
 handler404 = custom_handler404
 handler500 = custom_handler500

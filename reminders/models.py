@@ -21,8 +21,8 @@ class Reminder_Category(models.Model):
 
 class Reminder(models.Model):
     name = models.CharField(max_length=50)
-    completed = models.IntegerField()
-    date_of_completion = models.DateField(null=True)
+    completed = models.BooleanField()
+    date_of_completion = models.DateTimeField(null=True)
     category = models.ForeignKey(Reminder_Category, on_delete=models.CASCADE)
 
     def __str__(self):

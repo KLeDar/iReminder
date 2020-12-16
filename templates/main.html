@@ -88,13 +88,12 @@
    <div id="categories_list" class="clearfix colelem">
        <div id="categories_list__header">
            <p class="clearfix grpelem">Мои категории</p>
-           <a class="clearfix grpelem" onclick="alert('Клик!')" type="button">Править</a>
+           <a class="clearfix grpelem" id="redact_btn" type="button">Править</a>
        </div>
-
         <div id="categories_list__content" class="rounded-corners clearfix grpelem">
             <ul class="categories">
                 {% for cat in categories %}
-                <li class="category">
+                <li class="category clearfix">
                     <div class="category_icon clip_frame grpelem">
                      <img src="{% static 'images/list.png' %}" alt="Значок"/>
                     </div>
@@ -106,8 +105,21 @@
                             <div class="category_count clearfix grpelem">
                                 <p>{{ cat.id|count_reminders }}</p>
                             </div>
-
                             <a class="category_arrow nonblock nontext clip_frame grpelem" href="{% url 'reminders' cat.id %}"><img src="{% static 'images/arrow.png' %}" alt="Перейти к событиям"/></a>
+
+                            <form method="post" action="{% url 'update_category' cat.id %}" class="edit_category_name clip_frame grpelem">
+                                {% csrf_token %}
+                                <input name="name" placeholder="{{ cat.name }}" required>
+                                <input type="submit" hidden>
+                            </form>
+                            <button class="edit_category_btn clip_frame grpelem" id="edit_category" >
+                                    <img class="svg" id="u878" src="{% static 'images/edit.png' %}" alt="Редактировать событие"/>
+                            </button>
+                            <form action="{% url 'delete_category' cat.id %}" class="remove_category_btn">
+                                <button class="clip_frame grpelem" id="remove_category" >
+                                    <img class="svg" id="u878" src="{% static 'images/remove.svg' %}" alt="Удалить событие"/>
+                                </button>
+                            </form>
                         </div>
                         <div class="line_list colelem"></div>
                     </div>
@@ -120,7 +132,7 @@
                 <button type="submit" class="clip_frame grpelem" id="u450">
                     <img class="block" id="u450_img" src="{% static 'images/plus.png' %}" alt="Добавить событие"/>
                 </button>
-                <input class="nonblock nontext rounded-corners clearfix grpelem" id="u863-4" name="name" placeholder="Новая категория" required>
+                <input class="nonblock nontext rounded-corners clearfix grpelem" id="input_category" name="name" placeholder="Новая категория" required>
             </div>
             </form>
         </div>

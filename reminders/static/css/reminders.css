@@ -59,7 +59,14 @@ html {
 	margin-top: 5px;
 	width: 77.23%;
 	left: 19.73%;
-}
+    white-space: nowrap; /* Отменяем перенос текста */
+    overflow: hidden; /* Обрезаем содержимое */
+    padding: 5px; /* Поля */
+    text-overflow: ellipsis; /* Многоточие */
+   }
+#u282-4:hover {
+    white-space: normal; /* Обычный перенос текста */
+   }
 
 #u663-4 {
 	z-index: 25;
@@ -114,7 +121,7 @@ html {
 	width: 100%;
 }
 
-#reminder_name {
+.reminder_name {
 	z-index: 30;
 	min-height: 52px;
 	background-color: transparent;
@@ -125,16 +132,15 @@ html {
 	width: 65%;
 	left: 3.36%;
 }
-#reminder_name p{
+.reminder_name p{
     white-space: nowrap; /* Отменяем перенос текста */
     overflow: hidden; /* Обрезаем содержимое */
-    padding: 5px; /* Поля */
     text-overflow: ellipsis; /* Многоточие */
-   }
-#reminder_name p:hover {
+}
+.reminder_name p:hover {
     white-space: normal; /* Обычный перенос текста */
    }
-#reminder_datetime {
+.reminder_datetime {
 	z-index: 34;
 	min-height: 52px;
 	background-color: transparent;
@@ -147,7 +153,7 @@ html {
 	left: 80%;
 }
 
-#edit {
+#edit_reminder_btn {
 	z-index: 44;
 	background-color: transparent;
 	position: relative;
@@ -157,7 +163,7 @@ html {
 	left: 94.45%;
 }
 
-#remove {
+#remove_reminder_btn  {
 	z-index: 44;
 	background-color: transparent;
 	position: relative;
@@ -175,7 +181,7 @@ html {
 
 #u836 {
 	z-index: 29;
-	height: 2px;
+	height: 1px;
 	background-color: #949498;
 	margin-top: 3px;
 	position: relative;
@@ -183,15 +189,40 @@ html {
 	margin-left: 3.35%;
 }
 .reminder_list {
-	padding: 0 0 120px 0;
+	padding: 0 0 40px 0;
 }
 
+.edit_reminder_form {
+	z-index: 30;
+	min-height: 52px;
+	background-color: transparent;
+	font-size: 26px;
+	line-height: 52px;
+	position: relative;
+	margin-right: -10000px;
+	width: 95%;
+	left: 3.36%;
+}
+.edit_reminder_form .datetime {
+	z-index: 34;
+	min-height: 52px;
+	background-color: transparent;
+	font-size: 26px;
+	color: #7B7B80;
+	line-height: 52px;
+	position: relative;
+	margin-right: -10000px;
+	width: auto;
+	left: 40%;
+}
+
+
 .category_list:nth-child(n){
-    padding: 50px 0 50px 0;
+    padding: 50px 0 0px 0;
 }
 .category_list a {
-    text-decoration: none;
-    color: black;
+	text-decoration: none;
+	color: black;
 }
 
 #Add_Reminder {
