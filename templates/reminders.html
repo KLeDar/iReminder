@@ -36,16 +36,19 @@
                 <ul class="categories">
                 {% for rem in reminders %}
                 <li class="reminder_list clearfix">
-                    <form method="post" action="{% url 'complete_reminder' rem.category_id rem.id %}" class="clip_frame grpelem" id="u856">
+                    <form method="post" action="{% url 'complete_reminder' rem.category_id rem.id %}" class="reminder_checkbox clip_frame grpelem">
                         {% csrf_token %}
                         <!-- Пока костыль, не смог сделать словарь/кортеж чтобы было по красоте-->
-                        <input name="checkbox" type="checkbox" {% if rem.id|is_completed %}checked{% endif %} value="{% if rem.id|is_completed %}False{% else %}True{% endif %}">
+                        <label class="container">
+                          <input name="checkbox" type="checkbox" {% if rem.id|is_completed %}checked{% endif %} value="{% if rem.id|is_completed %}False{% else %}True{% endif %}">
+                          <span class="checkmark"></span>
+                        </label>
                         <input type="submit" hidden>
                     </form>
                     <div class="reminder_name clearfix grpelem">
                         <p>{{ rem.name }}</p>
                     </div>
-                    <div class="reminder_datetime clearfix grpelem">
+                    <div class="reminder_datetime clearfix grpelem {{ rem.date_of_completion|is_out_of_today }}">
                         <p>{{ rem.date_of_completion|date:"d.m.Y H:i" }}</p>
                     </div>
                     <form method="post" action="{% url 'update_reminder' rem.category_id rem.id%}" class="edit_reminder_form clip_frame grpelem">

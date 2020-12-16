@@ -112,7 +112,7 @@ html {
 	width: 99.74%;
 }
 
-#u856 {
+.reminder_checkbox {
 	z-index: 38;
 	background-color: transparent;
 	position: relative;
@@ -120,7 +120,67 @@ html {
 	margin-top: 7px;
 	width: 100%;
 }
+/*     Кастомный чекбокс   */
+.container {
+  z-index: 38;
+  display: block;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  right: 48%;
+  margin-top: 7px;
+  cursor: pointer;
+  font-size: 22px;
+  user-select: none;
+}
 
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 30px;
+  width: 30px;
+  background-color: #eee;
+}
+
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.container input:checked ~ .checkmark {
+  background-color: #F7931E;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.container .checkmark:after {
+  left: 10px;
+  top: 2px;
+  width: 10px;
+  height: 23px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+/*******************************/
 .reminder_name {
 	z-index: 30;
 	min-height: 52px;
@@ -152,7 +212,9 @@ html {
 	width: auto;
 	left: 80%;
 }
-
+.out_of_today{
+	color: #e01515;
+}
 #edit_reminder_btn {
 	z-index: 44;
 	background-color: transparent;
@@ -193,7 +255,7 @@ html {
 }
 
 .edit_reminder_form {
-	z-index: 30;
+	z-index: 50;
 	min-height: 52px;
 	background-color: transparent;
 	font-size: 26px;
