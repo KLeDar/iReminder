@@ -1,6 +1,5 @@
-from datetime import datetime
-from itertools import count
-
+import datetime as dt
+from django.utils import timezone
 from django import template
 from reminders.models import *
 
@@ -14,10 +13,9 @@ def count_reminders(category_id):
 
 @register.filter
 def is_out_of_today(date_of_completion):
-    #print('date_of_completion -> ', date_of_completion.day)
-    #print('datetime.datetime.today() ->', datetime.now())
-    #print(date_of_completion == datetime.now())
-    if date_of_completion == datetime.now():
+    if date_of_completion is None:
+        return ""
+    if date_of_completion < timezone.now():
         return 'out_of_today'
 
 
@@ -31,7 +29,3 @@ def is_completed(reminder_id):
         else:
             dict_completed = {'value': '1'}
             return False
-        set(dict_completed)
-        print(dict_completed)
-        print(dict_completed)
-

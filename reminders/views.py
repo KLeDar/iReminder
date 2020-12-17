@@ -8,6 +8,7 @@ from reminders import functions
 from reminders.models import Reminder_Category, Reminder
 from django.contrib.auth.models import User
 from .forms import RegistrationForm
+from django.utils import timezone
 
 
 class GuestView(View):
@@ -50,10 +51,10 @@ class MainView(View):
                    'user_fullname': get_header_name(request),
                    'all_reminders': len(get_user_reminder(request).exclude(completed=1)),
                    'near_of_date_reminders': len(get_user_reminder(request)
-                                                 .filter(date_of_completion__gte=datetime.datetime.now())
+                                                 .filter(date_of_completion__gte=timezone.now())
                                                  .exclude(completed=1)),
                    'out_of_date_reminders': len(get_user_reminder(request)
-                                                .filter(date_of_completion__lte=datetime.datetime.now())
+                                                .filter(date_of_completion__lte=timezone.now())
                                                 .exclude(date_of_completion=None)
                                                 .exclude(completed=1)),
                    'completed_reminders': len(get_user_reminder(request)
@@ -82,7 +83,7 @@ class RemindersView(View):
                    'header_list': Reminder_Category.objects.get(id=category_id),
                    'categories': get_categories(request),
                    'reminders': Reminder.objects.filter(category_id=category_id).exclude(completed=1),
-                   'datetime_now': datetime.datetime.now(),
+                   'datetime_now': timezone.now(),
                    'categories_list': True,
                    'add_reminder': True,
                    }
@@ -105,14 +106,19 @@ class RemindersFilterView(View):
             raise Http404
         """
         header_list = get_translate_filter(filter_name)
+        empty_message = False
+        if not get_filter(request, filter_name):
+            empty_message = True
+
         context = {'title': header_list,
                    'user_fullname': get_header_name(request),
                    'header_list': header_list,
                    'categories': get_categories(request),
                    'reminders': get_filter(request, filter_name),
-                   'datetime_now': datetime.datetime.now(),
+                   'datetime_now': timezone.now(),
                    'categories_list': False,
                    'add_reminder': False,
+                   'empty_message': empty_message,
                    }
         return render(request, 'reminders.html', context=context)
 
@@ -128,14 +134,18 @@ class RemindersSearchView(View):
         """
         reminder_name = request.GET.get('search_name')
         header_list = 'События с именем: ' + reminder_name
+        empty_message = False
+        if not get_user_reminder(request).filter(name__icontains=reminder_name):
+            empty_message = True
         context = {'title': header_list,
                    'user_fullname': get_header_name(request),
                    'header_list': header_list,
                    'categories': get_categories(request),
                    'reminders': get_user_reminder(request).filter(name__icontains=reminder_name),
-                   'datetime_now': datetime.datetime.now(),
+                   'datetime_now': timezone.now(),
                    'categories_list': False,
                    'add_reminder': False,
+                   'empty_message': empty_message,
                    }
         return render(request, 'reminders.html', context=context)
 
@@ -217,6 +227,7 @@ def custom_handler500(request):
     #            'handler_text': "Ошибка 500, что-то сломалось на сервере!",
     #            }
     return HttpResponse("Ошибка 500, что-то сломалось на сервере!")
+
 ###########################
 # Вспомогательные функции #
 ###########################
@@ -238,9 +249,9 @@ def get_filter(request, filter_name):
     if filter_name == 'all':
         return get_user_reminder(request).exclude(completed=1)
     elif filter_name == 'near_of_date':
-        return get_user_reminder(request).filter(date_of_completion__gte=datetime.datetime.now()).exclude(completed=1)
+        return get_user_reminder(request).filter(date_of_completion__gte=timezone.now()).exclude(completed=1)
     elif filter_name == 'out_of_date':
-        return get_user_reminder(request).filter(date_of_completion__lte=datetime.datetime.now()) \
+        return get_user_reminder(request).filter(date_of_completion__lte=timezone.now()) \
             .exclude(date_of_completion=None).exclude(completed=1)
     elif filter_name == 'completed':
         return get_user_reminder(request).filter(completed=1)

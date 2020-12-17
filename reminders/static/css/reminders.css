@@ -250,6 +250,9 @@ html {
 	width: 96.66%;
 	margin-left: 3.35%;
 }
+#empty_message{
+	font-size: 26px;
+}
 .reminder_list {
 	padding: 0 0 40px 0;
 }

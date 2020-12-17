@@ -33,6 +33,9 @@
             </div>
 
              <div class="clearfix colelem" id="pu856">
+                {% if empty_message %}
+                    <p class="clearfix grpelem" id="empty_message">Таких событий не найдено :(</p>
+                {% endif %}
                 <ul class="categories">
                 {% for rem in reminders %}
                 <li class="reminder_list clearfix">
